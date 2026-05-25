@@ -1,0 +1,167 @@
+body {
+      font-family: 'Poppins', Arial, sans-serif;
+      background: #f8f9fa;
+      color: #222;
+      padding-top: 70px;
+      margin: 0;
+      scroll-behavior: smooth;
+    }
+    .bg-maroon {
+      background-color: #800000 !important;
+    }
+    .text-maroon {
+      color: #800000 !important;
+    }
+    .btn-maroon {
+      background-color: #800000;
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .btn-maroon:hover,
+    .btn-maroon:focus {
+      background-color: #660000;
+      color: #fff;
+      transform: scale(1.05);
+    }
+    .navbar {
+      background-color: #800000 !important;
+      min-height: 70px;
+    }
+    .navbar .navbar-brand {
+      font-size: 1.1rem;
+      color: #fff !important;
+      letter-spacing: 0.5px;
+      font-weight: 700;
+    }
+    .navbar .navbar-brand img {
+      margin-right: 8px;
+    }
+    .navbar .nav-link {
+      color: #fff !important;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+    .navbar .nav-link:hover,
+    .navbar .nav-link:focus {
+      color: #ffd6d6 !important;
+    }
+    .navbar .dropdown-menu {
+      background-color: #800000;
+      border: none;
+    }
+    .navbar .dropdown-item {
+      color: #fff;
+      transition: background 0.2s;
+    }
+    .navbar .dropdown-item:hover,
+    .navbar .dropdown-item:focus {
+      background-color: #660000;
+      color: #fff;
+    }
+    .hero-section {
+      position: relative;
+      min-height: 100vh;
+      background: url('assets/img/image.png') no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(128,0,0,0.7);
+      z-index: 1;
+    }
+    .hero-section .container {
+      position: relative;
+      z-index: 2;
+    }
+    .hero-section h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    .hero-section p {
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 2rem;
+    }
+    .hero-section .btn-maroon {
+      font-size: 1.2rem;
+      padding: 0.75rem 2.5rem;
+      font-weight: 600;
+      box-shadow: 0 4px 24px rgba(128,0,0,0.15);
+    }
+    .input-group .form-control {
+      border-radius: 50px 0 0 50px;
+      border: 2px solid #800000;
+      padding: 0.75rem 1rem;
+    }
+    .input-group .btn {
+      border-radius: 0 50px 50px 0;
+    }
+    section {
+      padding: 5rem 0;
+    }
+    #about h2, #contact h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #800000;
+    }
+    #about p, #contact p {
+      font-size: 1.15rem;
+      color: #444;
+    }
+    
+    .footer {
+      background-color: #800000;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0;
+      width: 100%;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      z-index: 1030;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+    }
+    @media (max-width: 991.98px) {
+      .navbar .navbar-brand { font-size: 1rem; }
+      .hero-section h1 { font-size: 2.2rem; }
+      .hero-section p { font-size: 1.1rem; }
+      #about h2, #contact h2 { font-size: 1.5rem; }
+    }
+    @media (max-width: 767.98px) {
+      .hero-section h1 { font-size: 1.5rem; }
+      .hero-section p { font-size: 1rem; }
+      .footer { font-size: 0.95rem; padding: 0.7rem 0; }
+      section { padding: 3rem 0; }
+    }
+    @media (max-width: 575.98px) {
+      .navbar .navbar-brand span { font-size: 0.9rem; }
+      .hero-section h1 { font-size: 1.1rem; }
+      .hero-section p { font-size: 0.9rem; }
+      .footer { font-size: 0.9rem; padding: 0.5rem 0; }
+    }
+
+    /*admin_dashboard.php*/
+    /* ✅ Custom class for tab switching */
+    .tab-pane-custom {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out;
+    }
+    .tab-pane-custom.active {
+      display: block;
+      opacity: 1;
+    }
