@@ -1,0 +1,364 @@
+/* Import Design System */
+@import url('./design-system.css');
+
+body {
+    font-family: var(--font-family);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    padding-top: 70px;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+.bg-maroon {
+    background-color: #8B0000 !important; /* EVSU Maroon */
+}
+
+.text-maroon {
+    color: var(--primary) !important;
+}
+
+.btn-maroon {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: var(--evsu-white);
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: var(--font-weight-semibold);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-maroon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn-maroon:hover::before {
+    left: 100%;
+}
+
+.btn-maroon:hover,
+.btn-maroon:focus {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+    color: var(--evsu-white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.navbar {
+    background: var(--primary) !important;
+    box-shadow: var(--shadow-sm);
+    min-height: 70px;
+    padding: var(--spacing-md) 0;
+}
+
+.navbar .navbar-brand {
+    font-size: var(--font-size-lg);
+    color: var(--evsu-white) !important;
+    font-weight: var(--font-weight-bold);
+    text-decoration: none;
+}
+
+.navbar .navbar-brand img {
+    margin-right: var(--spacing-sm);
+}
+
+.navbar .nav-link {
+    color: var(--evsu-white) !important;
+    font-weight: var(--font-weight-medium);
+    padding: var(--spacing-sm) var(--spacing-md);
+    transition: color var(--transition-normal);
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    color: var(--secondary) !important;
+}
+
+.navbar .dropdown-menu {
+    background: var(--primary);
+    border: none;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+}
+
+.navbar .dropdown-item {
+    color: var(--evsu-white);
+    padding: var(--spacing-sm) var(--spacing-md);
+    transition: all var(--transition-normal);
+}
+
+.navbar .dropdown-item:hover,
+.navbar .dropdown-item:focus {
+    background: var(--primary-dark);
+    color: var(--evsu-white);
+}
+
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    background: url('../img/image.png') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(128, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.hero-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.hero-section p {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 2rem;
+}
+
+.hero-section .btn-maroon {
+    font-size: 1.2rem;
+    padding: 0.75rem 2.5rem;
+    font-weight: 600;
+    box-shadow: 0 4px 24px rgba(128, 0, 0, 0.15);
+}
+
+.input-group .form-control {
+    border-radius: 50px 0 0 50px;
+    border: 2px solid #800000;
+    padding: 0.75rem 1rem;
+}
+
+.input-group .btn {
+    border-radius: 0;
+    border: 2px solid #800000;
+    border-left: none;
+}
+
+.input-group .btn:last-child {
+    border-radius: 0 50px 50px 0;
+}
+
+#clearSearchBtn {
+    background-color: #f8f9fa !important;
+    color: #000000 !important;
+    /* Solid black for readability */
+    border-color: #800000 !important;
+}
+
+#clearSearchBtn:hover {
+    background-color: #e9ecef !important;
+    color: #000000 !important;
+    /* Solid black for readability */
+}
+
+section {
+    padding: 5rem 0;
+}
+
+#about h2,
+#contact h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #800000;
+}
+
+#about p,
+#contact p {
+    font-size: 1.15rem;
+    color: #000000;
+    /* Solid black for readability */
+}
+
+.footer {
+    background-color: #800000;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 1030;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+}
+
+/* Short viewports (e.g. landscape phones, keyboard open) – prevent footer overlap */
+@media (max-height: 600px) {
+    .footer {
+        position: relative;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .navbar .navbar-brand {
+        font-size: 1rem;
+    }
+
+    .hero-section h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-section p {
+        font-size: 1.1rem;
+    }
+
+    #about h2,
+    #contact h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .hero-section h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero-section p {
+        font-size: 1rem;
+    }
+
+    .footer {
+        font-size: 0.95rem;
+        padding: 0.7rem 0;
+    }
+
+    section {
+        padding: 3rem 0;
+    }
+    
+    /* Reduce container padding on mobile for dashboard pages */
+    .main-content .container-fluid {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
+    
+    .main-content {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
+    
+    .dashboard-card {
+        padding: 0.875rem !important;
+    }
+    
+    /* Reduce Bootstrap column padding on mobile */
+    .main-content .row {
+        margin-left: -0.25rem !important;
+        margin-right: -0.25rem !important;
+    }
+    
+    .main-content .row > [class*="col-"] {
+        padding-left: 0.25rem !important;
+        padding-right: 0.25rem !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .navbar .navbar-brand span {
+        font-size: 0.9rem;
+    }
+
+    .hero-section h1 {
+        font-size: 1.1rem;
+    }
+
+    .hero-section p {
+        font-size: 0.9rem;
+    }
+
+    .footer {
+        font-size: 0.9rem;
+        padding: 0.5rem 0;
+    }
+
+    /* Ensure touch-friendly buttons (exclude icon-only buttons) */
+    .btn:not(.btn-sm):not(.btn-icon-only) {
+        min-height: 44px;
+        padding: 0.875rem 1.25rem;
+    }
+
+    /* Improve search form on mobile */
+    .input-group .form-control {
+        font-size: 16px;
+        /* Prevents zoom on iOS */
+        min-height: 44px;
+    }
+
+    .input-group .btn:not(.btn-sm):not(.btn-icon-only) {
+        min-height: 44px;
+        padding: 0.875rem 1.5rem;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 399.98px) {
+    .hero-section h1 {
+        font-size: 1rem;
+    }
+
+    .hero-section p {
+        font-size: 0.85rem;
+    }
+
+    .navbar .navbar-brand span {
+        font-size: 0.85rem;
+    }
+}
+
+/* Very small screens – reduce input group padding for hero search */
+@media (max-width: 359.98px) {
+    .input-group .form-control {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    .input-group .btn {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    #scheduleSearchForm .input-group .btn {
+        padding: 0.5rem 0.75rem;
+    }
+}
+
+/*admin_dashboard.php*/
+/* ✅ Custom class for tab switching */
+.tab-pane-custom {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.tab-pane-custom.active {
+    display: block;
+    opacity: 1;
+}
