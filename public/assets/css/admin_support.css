@@ -1,0 +1,1383 @@
+/**
+ * Admin Support – Modern UI
+ * EVSU-OCC Scheduling System
+ */
+
+:root {
+  --as-maroon: #800000;
+  --as-maroon-dark: #5c0000;
+  --as-maroon-light: #a52a2a;
+  --as-cream: #f5f5dc;
+  --as-bg: #f4f6f9;
+  --as-bg-card: #ffffff;
+  --as-border: rgba(0, 0, 0, 0.06);
+  --as-text: #1a1d21;
+  --as-text-muted: #5c6370;
+  --as-text-light: #8b9199;
+  --as-radius: 12px;
+  --as-radius-lg: 16px;
+  --as-radius-xl: 20px;
+  --as-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --as-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --as-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.1);
+  --as-sidebar-width: 260px;
+  --as-navbar-height: 64px;
+  --as-transition: 0.2s ease;
+}
+
+/* Base */
+body.as-support-dashboard {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--as-bg);
+  color: var(--as-text);
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+/* Navbar – modern, clean */
+.as-support-dashboard .as-navbar {
+  min-height: var(--as-navbar-height);
+  background: linear-gradient(135deg, var(--as-maroon) 0%, var(--as-maroon-dark) 100%) !important;
+  box-shadow: var(--as-shadow);
+  border-bottom: none;
+  padding: 0 1rem;
+}
+
+.as-support-dashboard .as-navbar .navbar-brand {
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.as-support-dashboard .as-navbar .navbar-brand img {
+  border-radius: 8px;
+}
+
+.as-support-dashboard .as-navbar .navbar-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.95;
+}
+
+.as-support-dashboard .as-navbar .navbar-toggler {
+  border-radius: var(--as-radius);
+  padding: 0.4rem 0.6rem;
+}
+
+/* Sidebar – clearer hierarchy */
+.as-support-dashboard .as-sidebar {
+  background: linear-gradient(180deg, var(--as-maroon) 0%, #6b0000 100%);
+  width: var(--as-sidebar-width);
+  min-height: 100vh;
+  position: fixed;
+  top: var(--as-navbar-height);
+  left: 0;
+  z-index: 1090;
+  overflow-y: auto;
+  max-height: calc(100vh - var(--as-navbar-height));
+  padding: 1rem 0.5rem;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.08);
+}
+
+.as-support-dashboard .as-sidebar .nav-section {
+  margin-bottom: 1rem;
+}
+
+.as-support-dashboard .as-sidebar .nav-section small {
+  display: block;
+  padding: 0 0.75rem;
+  margin-bottom: 0.35rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.as-support-dashboard .as-sidebar .nav-link {
+  display: flex;
+  align-items: center;
+  padding: 0.65rem 0.75rem;
+  margin: 0.15rem 0.4rem;
+  border-radius: var(--as-radius);
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: background var(--as-transition), color var(--as-transition), transform var(--as-transition);
+}
+
+.as-support-dashboard .as-sidebar .nav-link .bi {
+  margin-right: 0.6rem;
+  font-size: 1.1rem;
+  width: 20px;
+  text-align: center;
+  opacity: 0.9;
+}
+
+.as-support-dashboard .as-sidebar .nav-link:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff !important;
+  transform: translateX(3px);
+}
+
+.as-support-dashboard .as-sidebar .nav-link.active {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff !important;
+  font-weight: 600;
+}
+
+.as-support-dashboard .as-sidebar hr {
+  margin: 0.75rem 0.5rem;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.as-support-dashboard .as-sidebar .text-center.mb-4 .bi-person-circle {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.as-support-dashboard .as-sidebar .fw-semibold.mt-2 {
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+/* Main content area */
+.as-support-dashboard .as-main {
+  margin-left: var(--as-sidebar-width);
+  padding-top: calc(var(--as-navbar-height) + 1.5rem);
+  padding-bottom: 5rem;
+  min-height: 100vh;
+  background: var(--as-bg);
+}
+
+.as-support-dashboard .as-main .container-fluid {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.as-support-dashboard .tab-content {
+  padding-top: 0.25rem;
+}
+
+.as-support-dashboard .tab-pane {
+  animation: asFadeIn 0.25s ease;
+}
+
+@keyframes asFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Welcome / page header */
+.as-support-welcome {
+  margin-bottom: 1.75rem;
+}
+
+.as-support-welcome h3 {
+  color: var(--as-text);
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.02em;
+}
+
+.as-support-welcome .as-welcome-sub {
+  color: var(--as-text-muted);
+  font-size: 0.9rem;
+}
+
+/* Search in header */
+.as-support-search .form-control {
+  border-radius: 24px;
+  padding: 0.5rem 1rem 0.5rem 2.5rem;
+  border: 1px solid var(--as-border);
+  background: var(--as-bg-card);
+  font-size: 0.9rem;
+  transition: border-color var(--as-transition), box-shadow var(--as-transition);
+}
+
+.as-support-search .form-control:focus {
+  border-color: var(--as-maroon);
+  box-shadow: 0 0 0 3px rgba(128, 0, 0, 0.12);
+}
+
+.as-support-search .bi-search {
+  color: var(--as-text-muted);
+  left: 1rem;
+}
+
+/* Stats cards */
+.as-support-dashboard .stats-card {
+  background: var(--as-bg-card);
+  border-radius: var(--as-radius-lg);
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--as-border);
+  box-shadow: var(--as-shadow-sm);
+  transition: transform var(--as-transition), box-shadow var(--as-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.as-support-dashboard .stats-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--as-maroon), var(--as-maroon-light));
+  border-radius: 4px 0 0 4px;
+}
+
+.as-support-dashboard .stats-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--as-shadow-hover);
+}
+
+.as-support-dashboard .stats-card .stat-number {
+  color: var(--as-maroon);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-text-fill-color: currentColor;
+}
+
+.as-support-dashboard .stats-card .stat-label {
+  color: var(--as-text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Department cards */
+.as-support-dashboard .as-dept-card {
+  background: var(--as-bg-card);
+  border-radius: var(--as-radius-lg);
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--as-border);
+  box-shadow: var(--as-shadow-sm);
+  transition: transform var(--as-transition), box-shadow var(--as-transition);
+  cursor: pointer;
+}
+
+.as-support-dashboard .as-dept-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--as-shadow-hover);
+  border-color: rgba(128, 0, 0, 0.15);
+}
+
+.as-support-dashboard .as-dept-card h6 {
+  color: var(--as-text);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.as-support-dashboard .as-dept-card .bi-arrow-right {
+  color: var(--as-text-muted);
+  transition: transform var(--as-transition);
+}
+
+.as-support-dashboard .as-dept-card:hover .bi-arrow-right {
+  transform: translateX(4px);
+  color: var(--as-maroon);
+}
+
+/* Dashboard cards */
+.as-support-dashboard .dashboard-card {
+  background: var(--as-bg-card);
+  border-radius: var(--as-radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--as-border);
+  box-shadow: var(--as-shadow-sm);
+  transition: box-shadow var(--as-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.as-support-dashboard .dashboard-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--as-maroon), var(--as-cream));
+  opacity: 0.9;
+}
+
+.as-support-dashboard .dashboard-card:hover {
+  box-shadow: var(--as-shadow);
+}
+
+.as-support-dashboard .dashboard-card h5,
+.as-support-dashboard .dashboard-card .card-title {
+  color: var(--as-text);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+.as-support-dashboard .dashboard-card h6 {
+  color: var(--as-text);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Tables */
+.as-support-dashboard .dashboard-card .table {
+  color: var(--as-text);
+  font-size: 0.9rem;
+}
+
+.as-support-dashboard .dashboard-card .table thead th {
+  background: var(--as-bg);
+  color: var(--as-text-muted);
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.85rem 1rem;
+  border-bottom: 2px solid var(--as-border);
+}
+
+.as-support-dashboard .dashboard-card .table tbody td {
+  padding: 0.85rem 1rem;
+  vertical-align: middle;
+  border-color: var(--as-border);
+}
+
+.as-support-dashboard .dashboard-card .table tbody tr {
+  transition: background var(--as-transition);
+}
+
+.as-support-dashboard .dashboard-card .table tbody tr:hover {
+  background: rgba(128, 0, 0, 0.03);
+}
+
+/* Buttons */
+.as-support-dashboard .btn-maroon {
+  background: linear-gradient(135deg, var(--as-maroon) 0%, var(--as-maroon-dark) 100%);
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  border-radius: var(--as-radius);
+  padding: 0.5rem 1.25rem;
+  transition: transform var(--as-transition), box-shadow var(--as-transition);
+}
+
+.as-support-dashboard .btn-maroon:hover {
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(128, 0, 0, 0.35);
+}
+
+.as-support-dashboard .btn-outline-maroon {
+  color: var(--as-maroon);
+  border: 2px solid var(--as-maroon);
+  background: transparent;
+  border-radius: var(--as-radius);
+  font-weight: 600;
+  transition: background var(--as-transition), color var(--as-transition);
+}
+
+.as-support-dashboard .btn-outline-maroon:hover {
+  background: var(--as-maroon);
+  color: #fff;
+}
+
+/* Form controls */
+.as-support-dashboard .dashboard-card .form-control,
+.as-support-dashboard .dashboard-card .form-select {
+  border-radius: var(--as-radius);
+  border: 1px solid var(--as-border);
+  padding: 0.5rem 0.85rem;
+  font-size: 0.9rem;
+  transition: border-color var(--as-transition), box-shadow var(--as-transition);
+}
+
+.as-support-dashboard .dashboard-card .form-control:focus,
+.as-support-dashboard .dashboard-card .form-select:focus {
+  border-color: var(--as-maroon);
+  box-shadow: 0 0 0 3px rgba(128, 0, 0, 0.1);
+  outline: none;
+}
+
+.as-support-dashboard .dashboard-card .form-label {
+  color: var(--as-text);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.as-support-dashboard .dashboard-card .badge {
+  font-weight: 600;
+  padding: 0.35rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+}
+
+.as-support-dashboard .dashboard-card .alert {
+  border-radius: var(--as-radius);
+  border-left-width: 4px;
+  padding: 0.9rem 1rem;
+}
+
+/* ========== Unified Modal Design (match Add Department modal for all admin support modals) ========== */
+.as-support-dashboard .modal-content,
+body.as-support-dashboard .modal-content {
+  border: none;
+  border-radius: var(--as-radius-lg);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  background: #fff;
+}
+
+.as-support-dashboard .modal-dialog,
+body.as-support-dashboard .modal-dialog {
+  margin: 1.25rem auto;
+  max-width: calc(100vw - 2.5rem);
+}
+
+.as-support-dashboard .modal-dialog-centered,
+body.as-support-dashboard .modal-dialog-centered {
+  min-height: calc(100% - 2.5rem);
+  display: flex;
+  align-items: center;
+}
+
+/* Large modals – same as Add New Department (~1125px wide, clear layout) */
+.as-support-dashboard .modal-dialog.modal-xl,
+body.as-support-dashboard .modal-dialog.modal-xl {
+  max-width: 1140px;
+  width: 100%;
+}
+.as-support-dashboard .modal-dialog.modal-xl .modal-content,
+body.as-support-dashboard .modal-dialog.modal-xl .modal-content {
+  max-height: calc(100vh - 2.5rem);
+  display: flex;
+  flex-direction: column;
+  background: #fff !important;
+}
+.as-support-dashboard .modal-dialog.modal-xl .modal-body,
+body.as-support-dashboard .modal-dialog.modal-xl .modal-body {
+  overflow-x: auto;
+  overflow-y: auto;
+  flex: 1 1 auto;
+  max-height: min(85vh, 1090px);
+}
+
+/* Header – white background, black title and X (match Add New Department modal image) */
+.as-support-dashboard .modal-header,
+body.as-support-dashboard .modal-header {
+  background: #fff !important;
+  color: #212529 !important;
+  border-bottom: 1px solid #dee2e6 !important;
+  padding: 1.125rem 1.5rem !important;
+  border-radius: var(--as-radius-lg) var(--as-radius-lg) 0 0 !important;
+  min-height: 56px;
+  align-items: center;
+}
+
+.as-support-dashboard .modal-header.bg-danger,
+body.as-support-dashboard .modal-header.bg-danger {
+  background: linear-gradient(135deg, #c41e3a 0%, #a01830 100%) !important;
+  color: #fff !important;
+  border-bottom-color: rgba(255,255,255,0.2) !important;
+}
+
+.as-support-dashboard .modal-title,
+body.as-support-dashboard .modal-title {
+  color: #212529 !important;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.as-support-dashboard .modal-header.bg-danger .modal-title,
+body.as-support-dashboard .modal-header.bg-danger .modal-title {
+  color: #fff !important;
+}
+
+.as-support-dashboard .modal-header .btn-close,
+body.as-support-dashboard .modal-header .btn-close {
+  opacity: 0.8;
+  padding: 0.5rem;
+  margin: -0.5rem -0.5rem -0.5rem auto;
+  background-size: 1em;
+  filter: none;
+}
+.as-support-dashboard .modal-header .btn-close-white,
+body.as-support-dashboard .modal-header .btn-close-white {
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+}
+.as-support-dashboard .modal-header.bg-danger .btn-close,
+.as-support-dashboard .modal-header.bg-danger .btn-close-white,
+body.as-support-dashboard .modal-header.bg-danger .btn-close,
+body.as-support-dashboard .modal-header.bg-danger .btn-close-white {
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+.as-support-dashboard .modal-header .btn-close:hover,
+.as-support-dashboard .modal-header .btn-close-white:hover,
+body.as-support-dashboard .modal-header .btn-close:hover,
+body.as-support-dashboard .modal-header .btn-close-white:hover {
+  opacity: 1;
+}
+
+/* Body – same as Add Department: p-4 padding, fw-semibold labels */
+.as-support-dashboard .modal-body,
+body.as-support-dashboard .modal-body {
+  padding: 1.5rem 1.5rem !important;
+  color: #000000;
+  background: #fff !important;
+  max-height: min(85vh, 1090px);
+  overflow-x: auto;
+  overflow-y: auto;
+  font-size: 16px;
+  font-family: 'Poppins', Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.as-support-dashboard .modal-body .form-label,
+body.as-support-dashboard .modal-body .form-label {
+  font-weight: 600;
+  color: var(--as-text);
+  margin-bottom: 0.35rem;
+}
+
+.as-support-dashboard .modal-body .form-control,
+.as-support-dashboard .modal-body .form-select,
+body.as-support-dashboard .modal-body .form-control,
+body.as-support-dashboard .modal-body .form-select {
+  border-radius: var(--as-radius);
+  border: 1px solid #dee2e6;
+  padding: 0.5rem 0.75rem;
+}
+
+.as-support-dashboard .modal-body .form-control:focus,
+.as-support-dashboard .modal-body .form-select:focus,
+body.as-support-dashboard .modal-body .form-control:focus,
+body.as-support-dashboard .modal-body .form-select:focus {
+  border-color: var(--as-maroon);
+  box-shadow: 0 0 0 0.2rem rgba(128, 0, 0, 0.15);
+  outline: 0;
+}
+
+/* Footer – same as Add Department: border-0 bg-light */
+.as-support-dashboard .modal-footer,
+body.as-support-dashboard .modal-footer {
+  border: 0 !important;
+  padding: 1rem 1.5rem !important;
+  background: #f8f9fa !important;
+  border-radius: 0 0 var(--as-radius-lg) var(--as-radius-lg) !important;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.as-support-dashboard .modal-footer.border-0,
+.as-support-dashboard .modal-footer.bg-light,
+body.as-support-dashboard .modal-footer.border-0,
+body.as-support-dashboard .modal-footer.bg-light {
+  border: 0 !important;
+  background: #f8f9fa !important;
+}
+
+/* Cancel = red, Primary = green (match Add New Department modal image) */
+.as-support-dashboard .modal-footer .btn-secondary,
+body.as-support-dashboard .modal-footer .btn-secondary {
+  background: #dc3545;
+  color: #fff;
+  border: none;
+}
+.as-support-dashboard .modal-footer .btn-secondary:hover,
+body.as-support-dashboard .modal-footer .btn-secondary:hover {
+  background: #bb2d3b;
+  color: #fff;
+}
+
+.as-support-dashboard .modal-footer .btn-maroon,
+body.as-support-dashboard .modal-footer .btn-maroon {
+  background: #198754;
+  color: #fff;
+  border: none;
+}
+.as-support-dashboard .modal-footer .btn-maroon:hover,
+body.as-support-dashboard .modal-footer .btn-maroon:hover {
+  background: #157347;
+  color: #fff;
+}
+
+.as-support-dashboard .modal-footer .btn,
+body.as-support-dashboard .modal-footer .btn {
+  border-radius: var(--as-radius);
+  font-weight: 600;
+  padding: 0.5rem 1.25rem;
+  min-height: 40px;
+  font-size: 0.9375rem;
+}
+
+.as-support-dashboard .modal-body.p-4,
+body.as-support-dashboard .modal-body.p-4 {
+  padding: 1.5rem 1.5rem !important;
+}
+
+@media (max-width: 576px) {
+  .as-support-dashboard .modal-dialog,
+  body.as-support-dashboard .modal-dialog {
+    margin: 0.5rem;
+    max-width: calc(100vw - 1rem);
+  }
+  .as-support-dashboard .modal-header,
+  body.as-support-dashboard .modal-header {
+    padding: 1rem 1.25rem !important;
+  }
+  .as-support-dashboard .modal-body,
+  body.as-support-dashboard .modal-body {
+    padding: 1rem 1.25rem !important;
+    max-height: 60vh;
+  }
+  .as-support-dashboard .modal-footer,
+  body.as-support-dashboard .modal-footer {
+    padding: 0.75rem 1.25rem !important;
+  }
+}
+
+/* When a modal is open: backdrop covers the whole dashboard (navbar, sidebar, content, footer) */
+.as-support-dashboard .modal-backdrop,
+body.as-support-dashboard .modal-backdrop,
+body.modal-open .modal-backdrop,
+.as-support-dashboard .modal-backdrop.fade,
+.as-support-dashboard .modal-backdrop.show,
+body.modal-open .modal-backdrop.show {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  z-index: 1100 !important;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  transition: opacity 0.2s ease !important;
+}
+
+.as-support-dashboard .modal-backdrop.show,
+body.as-support-dashboard .modal-backdrop.show,
+body.modal-open .modal-backdrop.show {
+  opacity: 1 !important;
+}
+
+/* Modals on top of everything – above backdrop, cover whole dashboard */
+.as-support-dashboard .modal,
+body.as-support-dashboard .modal,
+.as-support-dashboard .modal.show,
+body.as-support-dashboard .modal.show {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100vh !important;
+  z-index: 1105 !important;
+  overflow-y: auto !important;
+  transition: opacity 0.2s ease !important;
+}
+
+.as-support-dashboard .modal .modal-dialog,
+body.as-support-dashboard .modal .modal-dialog {
+  position: relative !important;
+  z-index: 1 !important;
+  transition: transform 0.2s ease-out !important;
+}
+
+@media (max-width: 576px) {
+  .as-support-dashboard .modal-dialog {
+    margin: 0.5rem;
+    max-width: calc(100% - 1rem);
+  }
+
+  .as-support-dashboard .modal-body {
+    padding: 1rem;
+    max-height: 60vh;
+  }
+
+  .as-support-dashboard .modal-footer {
+    flex-wrap: wrap;
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* ========== Manage Roles ========== */
+.as-support-dashboard .role-management-container,
+body.as-support-dashboard .role-management-container {
+  background: var(--as-bg);
+  min-height: 0;
+  padding: 1.5rem 0;
+}
+
+.as-support-dashboard .manage-roles-wrapper,
+body.as-support-dashboard .manage-roles-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.as-support-dashboard .role-header,
+body.as-support-dashboard .role-header {
+  background: transparent;
+  color: var(--as-text);
+  padding: 0 0 1rem 0;
+  margin-bottom: 0;
+  box-shadow: none;
+  border: none;
+}
+
+.as-support-dashboard .role-header h1,
+body.as-support-dashboard .role-header h1 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--as-text);
+  margin-bottom: 0.25rem;
+}
+
+.as-support-dashboard .role-header p,
+body.as-support-dashboard .role-header p {
+  font-size: 0.9rem;
+  color: var(--as-text-muted);
+}
+
+.as-support-dashboard .enhanced-card,
+body.as-support-dashboard .enhanced-card {
+  background: var(--as-bg-card);
+  border-radius: var(--as-radius-lg);
+  box-shadow: var(--as-shadow-sm);
+  border: 1px solid var(--as-border);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  transition: box-shadow var(--as-transition);
+}
+
+.as-support-dashboard .enhanced-card:hover,
+body.as-support-dashboard .enhanced-card:hover {
+  box-shadow: var(--as-shadow);
+}
+
+.as-support-dashboard .enhanced-card .card-header,
+body.as-support-dashboard .enhanced-card .card-header {
+  background: var(--as-bg);
+  border-bottom: 1px solid var(--as-border);
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--as-text);
+  border-radius: var(--as-radius-lg) var(--as-radius-lg) 0 0;
+}
+
+.as-support-dashboard .enhanced-card .card-body,
+body.as-support-dashboard .enhanced-card .card-body {
+  padding: 1.25rem 1.5rem;
+}
+
+.as-support-dashboard .role-card,
+body.as-support-dashboard .role-card {
+  background: var(--as-bg-card);
+  border-radius: var(--as-radius-lg);
+  border: 1px solid var(--as-border);
+  box-shadow: var(--as-shadow-sm);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.as-support-dashboard .role-card-header,
+body.as-support-dashboard .role-card-header {
+  background: linear-gradient(135deg, var(--as-maroon) 0%, var(--as-maroon-dark) 100%);
+  color: #fff;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.as-support-dashboard .role-avatar-large,
+body.as-support-dashboard .role-avatar-large {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.as-support-dashboard .role-name,
+body.as-support-dashboard .role-name {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: 0.25rem;
+}
+
+.as-support-dashboard .role-description,
+body.as-support-dashboard .role-description {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.85rem;
+  margin-bottom: 0;
+}
+
+.as-support-dashboard .role-level-badge,
+body.as-support-dashboard .role-level-badge {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 0.25rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.as-support-dashboard .role-actions .btn,
+body.as-support-dashboard .role-actions .btn {
+  border-radius: var(--as-radius);
+  font-weight: 500;
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #fff;
+}
+
+.as-support-dashboard .role-actions .btn:hover,
+body.as-support-dashboard .role-actions .btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #fff;
+  color: #fff;
+}
+
+.as-support-dashboard .modules-tabs-nav,
+body.as-support-dashboard .modules-tabs-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--as-border);
+}
+
+.as-support-dashboard .module-tab-button,
+body.as-support-dashboard .module-tab-button {
+  padding: 0.5rem 1rem;
+  border-radius: var(--as-radius);
+  border: 1px solid var(--as-border);
+  background: var(--as-bg-card);
+  color: var(--as-text-muted);
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: background var(--as-transition), color var(--as-transition), border-color var(--as-transition);
+}
+
+.as-support-dashboard .module-tab-button:hover,
+body.as-support-dashboard .module-tab-button:hover {
+  background: var(--as-bg);
+  color: var(--as-text);
+  border-color: var(--as-maroon);
+}
+
+.as-support-dashboard .module-tab-button.active,
+body.as-support-dashboard .module-tab-button.active {
+  background: var(--as-maroon);
+  border-color: var(--as-maroon);
+  color: #fff;
+}
+
+.as-support-dashboard .module-tab-content,
+body.as-support-dashboard .module-tab-content {
+  padding-top: 1rem;
+}
+
+.as-support-dashboard .module-tab-header h6,
+body.as-support-dashboard .module-tab-header h6 {
+  color: var(--as-text);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.as-support-dashboard .module-toggle .btn,
+body.as-support-dashboard .module-toggle .btn {
+  border-radius: var(--as-radius);
+  font-weight: 500;
+}
+
+.as-support-dashboard .modern-permission-grid,
+body.as-support-dashboard .modern-permission-grid {
+  margin: 0;
+}
+
+.as-support-dashboard .permission-matrix,
+body.as-support-dashboard .permission-matrix {
+  background: var(--as-bg-card);
+  border-radius: var(--as-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--as-shadow-sm);
+  border: 1px solid var(--as-border);
+  margin: 1rem 0;
+}
+
+.as-support-dashboard .permission-matrix thead th,
+body.as-support-dashboard .permission-matrix thead th {
+  background: linear-gradient(135deg, var(--as-maroon) 0%, var(--as-maroon-dark) 100%);
+  color: #fff;
+  border: none;
+  padding: 1rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.as-support-dashboard .permission-matrix thead th:first-child,
+body.as-support-dashboard .permission-matrix thead th:first-child {
+  text-align: left;
+  padding-left: 1.25rem;
+  border-top-left-radius: var(--as-radius-lg);
+}
+
+.as-support-dashboard .permission-matrix tbody td,
+body.as-support-dashboard .permission-matrix tbody td {
+  padding: 0.85rem 0.75rem;
+  border: 1px solid var(--as-border);
+  text-align: center;
+  vertical-align: middle;
+  background: var(--as-bg-card);
+  transition: background var(--as-transition);
+}
+
+.as-support-dashboard .permission-matrix tbody td:first-child,
+body.as-support-dashboard .permission-matrix tbody td:first-child {
+  text-align: left;
+  padding-left: 1.25rem;
+  background: var(--as-bg);
+  border-left: 4px solid var(--as-maroon);
+  font-weight: 500;
+  color: var(--as-text);
+}
+
+.as-support-dashboard .permission-matrix tbody tr:hover td,
+body.as-support-dashboard .permission-matrix tbody tr:hover td {
+  background: rgba(128, 0, 0, 0.04);
+}
+
+.as-support-dashboard .permission-matrix .form-check-input,
+body.as-support-dashboard .permission-matrix .form-check-input {
+  width: 2.25rem;
+  height: 1.125rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: background var(--as-transition);
+}
+
+.as-support-dashboard .permission-matrix .form-check-input:checked,
+body.as-support-dashboard .permission-matrix .form-check-input:checked {
+  background-color: var(--as-maroon);
+  border-color: var(--as-maroon);
+}
+
+/* Footer */
+.as-support-dashboard .footer {
+  background: linear-gradient(135deg, var(--as-maroon) 0%, var(--as-maroon-dark) 100%);
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  padding: 0.65rem 1rem;
+  font-size: 0.85rem;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1080;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Offcanvas */
+.as-support-dashboard .sidebar-offcanvas {
+  background: linear-gradient(180deg, var(--as-maroon) 0%, #6b0000 100%) !important;
+  width: 280px;
+  max-width: 85vw;
+  border-radius: 0 var(--as-radius-lg) var(--as-radius-lg) 0;
+  box-shadow: 8px 0 24px rgba(0, 0, 0, 0.15);
+}
+
+.as-support-dashboard .sidebar-offcanvas .offcanvas-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.as-support-dashboard .sidebar-offcanvas .offcanvas-title {
+  color: #fff;
+  font-weight: 600;
+}
+
+.as-support-dashboard .sidebar-offcanvas .btn-close {
+  filter: invert(1);
+  opacity: 0.8;
+}
+
+.as-support-dashboard #notificationBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--as-transition), transform var(--as-transition);
+}
+
+.as-support-dashboard #notificationBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
+}
+
+@media (max-width: 991.98px) {
+  .as-support-dashboard .sidebar.as-sidebar {
+    display: none !important;
+  }
+
+  .as-support-dashboard .as-main {
+    margin-left: 0;
+    padding-top: calc(var(--as-navbar-height) + 1rem);
+  }
+
+  .as-support-dashboard .as-main .container-fluid {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .as-support-dashboard .as-navbar .navbar-brand span {
+    font-size: 0.9rem;
+  }
+
+  .as-support-dashboard .stats-card,
+  .as-support-dashboard .as-dept-card,
+  .as-support-dashboard .dashboard-card {
+    padding: 1rem;
+  }
+
+  .as-support-dashboard .dashboard-card .table thead th,
+  .as-support-dashboard .dashboard-card .table tbody td {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Permission matrix – reduce column widths on mobile for easier scrolling */
+.permission-matrix .perm-col-permission {
+  min-width: 200px;
+}
+.permission-matrix .perm-col-role {
+  min-width: 100px;
+}
+@media (max-width: 767.98px) {
+  .permission-matrix .perm-col-permission {
+    min-width: 120px !important;
+  }
+  .permission-matrix .perm-col-role {
+    min-width: 60px !important;
+  }
+}
+
+/* Horizontal scroll + sticky permission column (phones can scroll roles while labels stay visible) */
+.permission-matrix-scroll {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  border-radius: var(--as-radius-lg);
+  box-shadow: var(--as-shadow-sm);
+  border: 1px solid var(--as-border);
+  background: var(--as-bg-card);
+}
+
+.permission-matrix-scroll .permission-matrix {
+  margin: 0;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.permission-matrix-scroll .permission-matrix th.perm-col-permission,
+.permission-matrix-scroll .permission-matrix td.perm-cell-label {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  box-shadow: 4px 0 8px -4px rgba(0, 0, 0, 0.12);
+}
+
+.permission-matrix-scroll .permission-matrix thead th.perm-col-permission {
+  z-index: 4;
+  background: linear-gradient(135deg, var(--as-maroon) 0%, var(--as-maroon-dark) 100%);
+}
+
+.permission-matrix-scroll .permission-matrix tbody td.perm-cell-label {
+  background: var(--as-bg);
+  max-width: min(52vw, 220px);
+}
+
+.permission-matrix-scroll .permission-matrix tbody tr:hover td.perm-cell-label {
+  background: rgba(128, 0, 0, 0.06);
+}
+
+@media (max-width: 767.98px) {
+  .permission-matrix-scroll .permission-matrix {
+    font-size: 0.8rem;
+  }
+
+  .permission-matrix-scroll .permission-matrix thead th,
+  .permission-matrix-scroll .permission-matrix tbody td {
+    padding: 0.5rem 0.35rem;
+  }
+}
+
+/* ========== AS Modal Component (Add New Department – Admin Support theme) ========== */
+.as-support-dashboard .as-modal-component .modal-dialog.as-modal-dialog-component,
+body.as-support-dashboard .as-modal-component .modal-dialog.as-modal-dialog-component {
+  margin: 1rem;
+  max-width: 450px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 2rem);
+}
+
+.as-support-dashboard .as-modal-component .modal-content.as-modal-content-component,
+body.as-support-dashboard .as-modal-component .modal-content.as-modal-content-component {
+  background: #ffffff !important;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  animation: as-modal-scale-in 200ms ease;
+}
+
+@keyframes as-modal-scale-in {
+  from { transform: scale(0.95); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+body.as-support-dashboard:has(.as-modal-component.show) .modal-backdrop,
+body.as-support-dashboard:has(.as-modal-component.show) .modal-backdrop.show {
+  background-color: rgba(0, 0, 0, 0.45) !important;
+  opacity: 1;
+}
+body.as-support-dashboard .as-modal-component.show {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  animation: as-modal-fade-in 200ms ease;
+}
+@keyframes as-modal-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.as-support-dashboard .as-modal-component .as-modal-header-component,
+body.as-support-dashboard .as-modal-component .as-modal-header-component {
+  background: #8B0000 !important;
+  color: #ffffff !important;
+  padding: 12px 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  border: none !important;
+  border-radius: 8px 8px 0 0 !important;
+  margin: 0 !important;
+}
+
+.as-support-dashboard .as-modal-component .as-modal-header-left,
+body.as-support-dashboard .as-modal-component .as-modal-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.as-support-dashboard .as-modal-component .as-modal-header-icon,
+body.as-support-dashboard .as-modal-component .as-modal-header-icon {
+  font-size: 1.1rem;
+  opacity: 0.95;
+}
+
+.as-support-dashboard .as-modal-component .as-modal-title,
+body.as-support-dashboard .as-modal-component .as-modal-title {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  font-size: 1.05rem !important;
+  margin: 0 !important;
+}
+
+.as-support-dashboard .as-modal-component .as-modal-close,
+body.as-support-dashboard .as-modal-component .as-modal-close {
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+  border: none;
+  background-size: 1em;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.as-support-dashboard .as-modal-component .as-modal-close:hover,
+body.as-support-dashboard .as-modal-component .as-modal-close:hover {
+  opacity: 1;
+}
+
+.as-support-dashboard .as-modal-component .as-modal-body-component,
+body.as-support-dashboard .as-modal-component .as-modal-body-component {
+  padding: 20px !important;
+  background: #ffffff !important;
+  color: #1a1d21;
+  border: none !important;
+}
+
+.as-support-dashboard .as-modal-component .as-modal-field,
+body.as-support-dashboard .as-modal-component .as-modal-field {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.as-support-dashboard .as-modal-component .as-modal-label,
+body.as-support-dashboard .as-modal-component .as-modal-label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #1a1d21;
+  font-size: 0.9375rem;
+}
+
+.as-support-dashboard .as-modal-component .as-modal-asterisk,
+body.as-support-dashboard .as-modal-component .as-modal-asterisk {
+  color: #8B0000;
+}
+
+.as-support-dashboard .as-modal-component .as-modal-input,
+body.as-support-dashboard .as-modal-component .as-modal-input {
+  width: 100% !important;
+  height: 40px;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #1a1d21;
+  background: #fff;
+}
+.as-support-dashboard .as-modal-component .as-modal-input:focus,
+body.as-support-dashboard .as-modal-component .as-modal-input:focus {
+  outline: none;
+  border-color: #8B0000;
+  box-shadow: 0 0 0 2px rgba(139, 0, 0, 0.15);
+}
+.as-support-dashboard .as-modal-component .as-modal-input::placeholder,
+body.as-support-dashboard .as-modal-component .as-modal-input::placeholder {
+  color: #999;
+}
+
+.as-support-dashboard .as-modal-component .as-modal-select,
+body.as-support-dashboard .as-modal-component .as-modal-select {
+  appearance: auto;
+  cursor: pointer;
+}
+
+.as-support-dashboard .as-modal-component .as-modal-helper,
+body.as-support-dashboard .as-modal-component .as-modal-helper {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  color: #777;
+}
+
+.as-support-dashboard .as-modal-component .as-modal-footer-component,
+body.as-support-dashboard .as-modal-component .as-modal-footer-component {
+  padding: 15px 20px !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  gap: 10px !important;
+  border: none !important;
+  background: #f8f9fa !important;
+  border-radius: 0 0 8px 8px !important;
+}
+
+.as-support-dashboard .as-modal-component .as-modal-btn,
+body.as-support-dashboard .as-modal-component .as-modal-btn {
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.as-support-dashboard .as-modal-component .as-modal-btn-cancel,
+body.as-support-dashboard .as-modal-component .as-modal-btn-cancel {
+  background: #f1f1f1;
+  color: #8B0000;
+}
+.as-support-dashboard .as-modal-component .as-modal-btn-cancel:hover,
+body.as-support-dashboard .as-modal-component .as-modal-btn-cancel:hover {
+  background: #e5e5e5;
+  color: #8B0000;
+}
+
+.as-support-dashboard .as-modal-component .as-modal-btn-submit,
+body.as-support-dashboard .as-modal-component .as-modal-btn-submit {
+  background: #8B0000;
+  color: #ffffff;
+  padding: 8px 18px;
+}
+.as-support-dashboard .as-modal-component .as-modal-btn-submit:hover,
+body.as-support-dashboard .as-modal-component .as-modal-btn-submit:hover {
+  background: #700000;
+  color: #ffffff;
+}
+
+.as-support-dashboard .as-modal-component .as-modal-btn-icon,
+body.as-support-dashboard .as-modal-component .as-modal-btn-icon {
+  margin-right: 6px;
+  font-size: 1rem;
+}
+
+@media (max-width: 576px) {
+  .as-support-dashboard .as-modal-component .modal-dialog.as-modal-dialog-component,
+  body.as-support-dashboard .as-modal-component .modal-dialog.as-modal-dialog-component {
+    margin: 0.75rem;
+    max-width: calc(100vw - 1.5rem);
+  }
+  .as-support-dashboard .as-modal-component .as-modal-header-component,
+  body.as-support-dashboard .as-modal-component .as-modal-header-component {
+    padding: 10px 16px !important;
+  }
+  .as-support-dashboard .as-modal-component .as-modal-body-component,
+  body.as-support-dashboard .as-modal-component .as-modal-body-component {
+    padding: 16px !important;
+  }
+  .as-support-dashboard .as-modal-component .as-modal-footer-component,
+  body.as-support-dashboard .as-modal-component .as-modal-footer-component {
+    padding: 12px 16px !important;
+    flex-wrap: wrap;
+  }
+}

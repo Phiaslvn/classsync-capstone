@@ -1,0 +1,867 @@
+/* ============================================
+   SCHEDULE CALENDAR VISUALIZATION - ENHANCED
+   ============================================ */
+
+.calendar-container {
+    position: relative;
+    margin-top: 1.5rem;
+    width: 100%;
+}
+
+/* Mobile: Enable horizontal scrolling */
+@media (max-width: 991.98px) {
+    .calendar-container {
+        overflow-x: auto;
+        overflow-y: visible;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+        /* Hide scrollbar but keep functionality */
+        scrollbar-width: thin;
+        scrollbar-color: rgba(128, 0, 0, 0.3) transparent;
+    }
+    
+    .calendar-container::-webkit-scrollbar {
+        height: 6px;
+    }
+    
+    .calendar-container::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    .calendar-container::-webkit-scrollbar-thumb {
+        background: rgba(128, 0, 0, 0.3);
+        border-radius: 3px;
+    }
+    
+    .calendar-container::-webkit-scrollbar-thumb:hover {
+        background: rgba(128, 0, 0, 0.5);
+    }
+}
+
+.calendar-grid {
+    display: flex;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.3s ease;
+}
+
+.calendar-grid:hover {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* Time Column - Enhanced */
+.time-column {
+    width: 100px;
+    flex-shrink: 0;
+    background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+    border-right: 2px solid #e0e0e0;
+    position: relative;
+    z-index: 3;
+}
+
+.time-slot {
+    height: 60px; /* 1 hour slot */
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #495057;
+    border-bottom: 1px solid #e9ecef;
+    position: relative;
+    transition: background-color 0.2s ease;
+}
+
+.time-slot:hover {
+    background-color: #f1f3f5;
+}
+
+.time-slot:last-child {
+    border-bottom: none;
+}
+
+.time-slot::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 30px; /* Position at the halfway point */
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, #d0d7de 50%, transparent 100%);
+    border-top: 1px dashed #d0d7de;
+}
+
+.time-slot-half {
+    position: absolute;
+    top: 32px;
+    font-size: 0.65rem;
+    color: #868e96;
+    font-weight: 400;
+}
+
+/* Days Wrapper - Enhanced */
+.days-wrapper {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    flex-grow: 1;
+    background-color: #ffffff;
+}
+
+.day-column {
+    position: relative;
+    border-right: 1px solid #e9ecef;
+    background-color: #ffffff;
+    transition: background-color 0.2s ease;
+}
+
+.day-column:hover {
+    background-color: #f8f9fa;
+}
+
+.day-column:last-child {
+    border-right: none;
+}
+
+.day-column-content {
+    position: relative;
+    height: calc(14 * 60px); /* 14 hours * 60px/hour */
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 59px,
+        #f8f9fa 59px,
+        #f8f9fa 60px
+    );
+}
+
+/* Calendar Header - Enhanced */
+.calendar-header {
+    text-align: center;
+    padding: 1rem 0.5rem;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, #800000 0%, #990000 100%);
+    color: #ffffff;
+    border-bottom: 2px solid #660000;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+}
+
+.calendar-header:hover {
+    background: linear-gradient(135deg, #990000 0%, #b30000 100%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Schedule Block - Enhanced Card Design */
+.schedule-block {
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    background: #800000;
+    color: #ffffff;
+    border-radius: 0 8px 8px 0;
+    padding: 0;
+    font-size: 0.75rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    border-left: 5px solid #660000;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-right: none;
+    border-bottom: none;
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent;
+    z-index: 2;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: 60px;
+}
+
+/* Removed glass-like gradient overlay */
+
+/* Removed shine effect for solid appearance */
+
+.schedule-block:hover {
+    z-index: 10;
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4), 0 6px 12px rgba(0, 0, 0, 0.3);
+    border-left-width: 6px;
+}
+
+.schedule-block:hover .type-details {
+    background: rgba(0, 0, 0, 0.7);
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.schedule-block-content {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    height: 100%;
+    justify-content: space-between;
+    padding: 10px 12px;
+    box-sizing: border-box;
+}
+
+.schedule-block .subj-code {
+    font-weight: 800;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 4px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 1px 4px rgba(0, 0, 0, 0.7), 0 0 2px rgba(0, 0, 0, 0.9);
+    letter-spacing: 0.4px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.schedule-block .subj-code::before {
+    content: '📚';
+    font-size: 0.75rem;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.4));
+    flex-shrink: 0;
+}
+
+.schedule-block .subj-code .section-name {
+    font-weight: 600;
+    opacity: 1;
+    font-size: 0.85em;
+}
+
+.schedule-block .instructor-name {
+    font-size: 0.75rem;
+    font-style: normal;
+    opacity: 1;
+    line-height: 1.5;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    margin-bottom: 3px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.7), 0 0 2px rgba(0, 0, 0, 0.9);
+}
+
+.schedule-block .instructor-name::before {
+    content: '👤';
+    font-size: 0.65rem;
+    opacity: 1;
+}
+
+.schedule-block .location-details {
+    font-size: 0.72rem;
+    opacity: 1;
+    margin: 3px 0;
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #ffffff;
+    font-weight: 500;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.7), 0 0 2px rgba(0, 0, 0, 0.9);
+}
+
+.schedule-block .location-details::before {
+    content: '📍';
+    font-size: 0.72rem;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+    flex-shrink: 0;
+}
+
+.schedule-block .location-details .separator {
+    margin: 0 4px;
+    opacity: 0.9;
+}
+
+.schedule-block .location-details .building-name,
+.schedule-block .location-details .room-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.schedule-block .time-details {
+    font-size: 0.73rem;
+    opacity: 1;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 4px;
+    border-top: 1.5px solid rgba(255, 255, 255, 0.3);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.7), 0 0 2px rgba(0, 0, 0, 0.9);
+}
+
+.schedule-block .time-details::before {
+    content: '🕐';
+    font-size: 0.7rem;
+    opacity: 1;
+    flex-shrink: 0;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.schedule-block .time-details .time-range {
+    flex: 1;
+    min-width: 0;
+}
+
+.schedule-block .time-details .duration-badge {
+    font-size: 0.65rem;
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    white-space: nowrap;
+    flex-shrink: 0;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+}
+
+.schedule-block .type-details {
+    position: absolute;
+    bottom: 8px;
+    right: 10px;
+    font-size: 0.68rem;
+    font-weight: 900;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 4px 10px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    color: #ffffff;
+    transition: all 0.2s ease;
+}
+
+/* Remove old styles */
+.schedule-block .sec-name,
+.schedule-block .rm-name {
+    display: none;
+}
+
+/* Enhanced spacing for taller schedule blocks */
+.schedule-block[min-height="120px"] .schedule-block-content {
+    padding: 2px 0;
+}
+
+.schedule-block[min-height="180px"] .schedule-block-content {
+    padding: 4px 0;
+}
+
+/* Better text wrapping for long content */
+.schedule-block .subj-code,
+.schedule-block .instructor-name,
+.schedule-block .location-details {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+/* Simplified schedule block content - matching image style */
+.schedule-block-content {
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.schedule-block .subj-code-simple {
+    font-weight: 900;
+    font-size: 0.85rem;
+    line-height: 1.3;
+    color: inherit;
+    margin: 0;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.3px;
+    text-align: center;
+    width: 100%;
+}
+
+.schedule-block .instructor-simple {
+    font-weight: 500;
+    font-size: 0.75rem;
+    line-height: 1.3;
+    color: inherit;
+    margin: 0;
+    opacity: 0.95;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 100%;
+}
+
+.schedule-block .room-simple {
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 1.3;
+    color: inherit;
+    margin: 0;
+    opacity: 0.9;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 100%;
+}
+
+.schedule-block .time-simple {
+    font-weight: 500;
+    font-size: 0.7rem;
+    line-height: 1.3;
+    color: inherit;
+    margin: 0;
+    opacity: 0.9;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 100%;
+}
+
+.schedule-block .type-simple {
+    font-weight: 600;
+    font-size: 0.7rem;
+    line-height: 1.3;
+    color: inherit;
+    margin: 0;
+    margin-top: auto;
+    padding-top: 4px;
+    opacity: 0.85;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 100%;
+}
+
+/* Overtime block simplified content */
+.schedule-block.overtime-block .subj-code-simple,
+.schedule-block.overtime-block .instructor-simple,
+.schedule-block.overtime-block .room-simple,
+.schedule-block.overtime-block .time-simple,
+.schedule-block.overtime-block .type-simple {
+    color: #721c24;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+/* Enhanced visual feedback on click */
+.schedule-block:active {
+    transform: translateY(0px) scale(0.98);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Focus state for accessibility */
+.schedule-block:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.schedule-block:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Better contrast for text readability - removed duplicate, using stronger shadows defined in individual elements */
+
+/* Overtime Block - Solid Colors */
+.schedule-block.overtime-block {
+    background: #ffe8e8 !important;
+    border-left: 6px solid #dc3545 !important;
+    border-top: 1px solid rgba(220, 53, 69, 0.3);
+    box-shadow: 0 4px 14px rgba(220, 53, 69, 0.3), 0 2px 4px rgba(200, 30, 50, 0.15) !important;
+    color: #721c24 !important;
+}
+
+/* Removed gradient shine effect for overtime blocks */
+.schedule-block.overtime-block::before {
+    display: none;
+}
+
+.schedule-block.overtime-block::after {
+    display: none;
+}
+
+.schedule-block.overtime-block:hover {
+    background: #ffe0e0 !important;
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 24px rgba(220, 53, 69, 0.4), 0 4px 8px rgba(200, 30, 50, 0.2) !important;
+    border-left-width: 7px !important;
+}
+
+.schedule-block.overtime-block .subj-code {
+    color: #58151c;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.schedule-block.overtime-block .subj-code::before {
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
+}
+
+.schedule-block.overtime-block .instructor-name,
+.schedule-block.overtime-block .location-details,
+.schedule-block.overtime-block .time-details {
+    color: #721c24;
+}
+
+.schedule-block.overtime-block .time-details {
+    border-top-color: rgba(220, 53, 69, 0.2);
+}
+
+.schedule-block.overtime-block .type-details {
+    background: rgba(220, 53, 69, 0.3);
+    color: #721c24;
+    border-color: rgba(220, 53, 69, 0.4);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.schedule-block .badge.bg-danger {
+    font-size: 0.7em;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: inline-block;
+    margin-bottom: 4px;
+    padding: 0.3em 0.6em;
+    border-radius: 6px;
+    font-weight: 700;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 4px;
+    display: inline-block;
+}
+
+/* Empty State Enhancement */
+.day-column-content:empty::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, #e9ecef 2px, transparent 2px);
+    background-size: 8px 8px;
+    opacity: 0.3;
+}
+
+/* Responsive Improvements - Mobile Horizontal Scroll */
+@media (max-width: 991.98px) {
+    .calendar-container {
+        overflow-x: auto;
+        overflow-y: visible;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+        position: relative;
+    }
+    
+    .calendar-grid {
+        display: flex;
+        min-width: fit-content;
+        width: max-content;
+        overflow-x: auto;
+        overflow-y: visible;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x proximity;
+    }
+    
+    /* Fixed time column on mobile */
+    .time-column {
+        width: 80px;
+        flex-shrink: 0;
+        position: sticky;
+        left: 0;
+        z-index: 10;
+        background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Days wrapper - horizontal scroll */
+    .days-wrapper {
+        display: flex;
+        flex-direction: row;
+        min-width: fit-content;
+        width: max-content;
+    }
+    
+    /* Each day column gets minimum width for readability */
+    .day-column {
+        min-width: 140px;
+        width: 140px;
+        flex-shrink: 0;
+        scroll-snap-align: start;
+    }
+    
+    .calendar-header {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.8rem;
+        position: sticky;
+        top: 0;
+        z-index: 5;
+    }
+    
+    .schedule-block {
+        left: 4px;
+        right: 4px;
+        padding: 6px 8px;
+        font-size: 0.75rem;
+        min-height: 60px;
+    }
+    
+    .schedule-block .subj-code {
+        font-size: 0.85rem;
+    }
+    
+    .schedule-block .instructor-name {
+        font-size: 0.7rem;
+    }
+    
+    .schedule-block .location-details {
+        font-size: 0.68rem;
+    }
+    
+    .schedule-block .time-details {
+        font-size: 0.7rem;
+    }
+    
+    /* Better touch targets */
+    .schedule-block {
+        -webkit-tap-highlight-color: rgba(128, 0, 0, 0.2);
+        touch-action: manipulation;
+    }
+    
+    /* Scroll indicator hint - only show once */
+    .calendar-container.scroll-hint::before {
+        content: '← Swipe to view all days →';
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(128, 0, 0, 0.9);
+        color: white;
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        z-index: 20;
+        pointer-events: none;
+        animation: fadeOutHint 4s ease-out forwards;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    @keyframes fadeOutHint {
+        0% { opacity: 1; transform: translateY(0); }
+        60% { opacity: 1; transform: translateY(0); }
+        100% { opacity: 0; transform: translateY(-10px); }
+    }
+    
+    /* Ensure calendar grid doesn't shrink */
+    .calendar-grid {
+        flex-shrink: 0;
+    }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+    .time-column {
+        width: 70px;
+    }
+    
+    .day-column {
+        min-width: 120px;
+        width: 120px;
+    }
+    
+    .calendar-header {
+        padding: 0.6rem 0.4rem;
+        font-size: 0.75rem;
+    }
+    
+    .schedule-block {
+        font-size: 0.7rem;
+        padding: 5px 6px;
+    }
+    
+    .schedule-block .subj-code {
+        font-size: 0.8rem;
+    }
+}
+
+/* Scrollbar Styling */
+.calendar-grid::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.calendar-grid::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.calendar-grid::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.calendar-grid::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Animation for schedule blocks */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.schedule-block {
+    animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.schedule-block-content > * {
+    animation: fadeIn 0.5s ease-out;
+    animation-fill-mode: both;
+}
+
+.schedule-block-content > *:nth-child(1) { animation-delay: 0.1s; }
+.schedule-block-content > *:nth-child(2) { animation-delay: 0.15s; }
+.schedule-block-content > *:nth-child(3) { animation-delay: 0.2s; }
+.schedule-block-content > *:nth-child(4) { animation-delay: 0.25s; }
+.schedule-block-content > *:nth-child(5) { animation-delay: 0.3s; }
+
+/* Weekend Column Styling */
+.day-column:nth-child(6) .calendar-header,
+.day-column:nth-child(7) .calendar-header {
+    background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+}
+
+.day-column:nth-child(6) .calendar-header:hover,
+.day-column:nth-child(7) .calendar-header:hover {
+    background: linear-gradient(135deg, #5a6268 0%, #495057 100%);
+}
+
+/* Current Time Indicator (if needed in future) */
+.current-time-indicator {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, #dc3545 50%, transparent 100%);
+    z-index: 100;
+    pointer-events: none;
+}
+
+.current-time-indicator::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -4px;
+    width: 8px;
+    height: 8px;
+    background: #dc3545;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.3);
+}
+
+/* Enhanced Schedule Block Types */
+.schedule-block[data-type="Lec"] {
+    border-left-color: #660000;
+}
+
+.schedule-block[data-type="Lab"] {
+    border-left-color: #002244;
+}
+
+.schedule-block[data-type="Special"] {
+    border-left-color: #4A5A2A;
+}
+
+/* Tooltip Enhancement */
+.schedule-block[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 12px;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    white-space: pre-line;
+    z-index: 1000;
+    margin-bottom: 8px;
+    pointer-events: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.schedule-block[title]:hover::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    margin-bottom: 2px;
+    pointer-events: none;
+}
+
+/* Print Styles */
+@media print {
+    .calendar-grid {
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+    
+    .schedule-block {
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+    
+    .schedule-block:hover {
+        transform: none;
+    }
+}
+
