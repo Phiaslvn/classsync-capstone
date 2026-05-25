@@ -1,0 +1,86 @@
+# CDN Bypass Rules for Dynamic PHP Application
+# This file prevents CDN from caching dynamic content
+
+# Enable mod_headers if available
+<IfModule mod_headers.c>
+    # Bypass CDN for all PHP files
+    <FilesMatch "\.php$">
+        Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+        Header set Cache-Control "post-check=0, pre-check=0" env=REDIRECT_no_cache
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+        Header set X-Cache-Bypass "true"
+    </FilesMatch>
+
+    # Bypass CDN for API routes
+    <If "%{REQUEST_URI} =~ m#/api/#">
+        Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+        Header set X-Cache-Bypass "true"
+    </If>
+
+    # Bypass CDN for admin routes
+    <If "%{REQUEST_URI} =~ m#/admin/#">
+        Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+        Header set X-Cache-Bypass "true"
+    </If>
+
+    # Bypass CDN for auth routes
+    <If "%{REQUEST_URI} =~ m#/views/auth/#">
+        Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+        Header set X-Cache-Bypass "true"
+    </If>
+
+    # Bypass CDN for management routes
+    <If "%{REQUEST_URI} =~ m#/management/#">
+        Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+        Header set X-Cache-Bypass "true"
+    </If>
+
+    # Bypass CDN for instructor routes
+    <If "%{REQUEST_URI} =~ m#/instructor/#">
+        Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+        Header set X-Cache-Bypass "true"
+    </If>
+
+    # Bypass CDN for moderator routes
+    <If "%{REQUEST_URI} =~ m#/moderator/#">
+        Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+        Header set X-Cache-Bypass "true"
+    </If>
+
+    # Bypass CDN for admin_support routes
+    <If "%{REQUEST_URI} =~ m#/admin_support/#">
+        Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+        Header set X-Cache-Bypass "true"
+    </If>
+
+    # Cache static assets (CSS, JS, images) for better performance
+    <FilesMatch "\.(css|js|jpg|jpeg|png|gif|ico|svg|woff|woff2|ttf|eot)$">
+        Header set Cache-Control "public, max-age=2592000"
+        Header set Expires "access plus 1 month"
+    </FilesMatch>
+</IfModule>
+
+# Prevent directory listing
+Options -Indexes
+
+# Protect sensitive files
+<FilesMatch "^(\.htaccess|\.env|composer\.(json|lock)|package\.json)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
